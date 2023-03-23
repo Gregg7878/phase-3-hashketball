@@ -77,9 +77,7 @@ end
 
 Run the test again. Sure enough, our method fails (unsurprisingly), but the test
 results have changed. Continue to add code to get `num_points_scored` working.
-If you need to "invent" helper methods, to help you process `game_hash`, do so!
-Here's some sample thought process:
-
+If you need to "invent
 > Think about where in the hash you will find a player's `:points`. How can you
 > iterate down into that level? Think about the return value of your method.
 > Remember that `.each` returns the original collection that you are iterating
@@ -137,7 +135,9 @@ way software is "grown" in the real world.
 
   - First, find the player with the largest shoe size
   - Then, return that player's number of rebounds
-  - Remember to think about return values here.
+  - Remember to think about return values here." helper methods, to help you process `game_hash`, do so!
+Here's some sample thought process:
+
 
 **Bonus Questions:**
 

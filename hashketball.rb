@@ -127,3 +127,106 @@ def game_hash
 end
 
 # Write code here
+def shoe_size(player_name)
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player|
+      return player[:shoe] if player[:player_name] == player_name
+    end
+  end
+end
+
+def num_points_scored(player_name)
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |player|
+      return player[:points] if player[:player_name] == player_name
+    end
+  end
+end
+
+
+def team_colors(team_name)
+  game_hash.each do |location, team_data|
+    return team_data[:colors] if team_data[:team_name] == team_name
+  end
+end
+
+def team_names
+  game_hash.map { |location, team_data| team_data[:team_name] }
+end
+
+def player_numbers(team_name)
+  game_hash.each do |location, team_data|
+    return team_data[:players].map { |player| player[:number] } if team_data[:team_name] == team_name
+  end
+end
+
+def player_stats(player_name)
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player|
+      if player[:player_name] == player_name
+        return player.slice(:player_name, :number, :shoe, :points, :rebounds, :assists, :steals, :blocks, :slam_dunks)
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds
+  biggest_shoe_size = 0
+  rebounds = 0
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |player|
+      if player[:shoe] > biggest_shoe_size
+        biggest_shoe_size = player[:shoe]
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
+
+
+def most_points_scored
+  max_points = 0
+  player_name = ""
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |player|
+      if player[:points] > max_points
+        max_points = player[:points]
+        player_name = player[:player_name]
+      end
+    end
+  end
+  player_name
+end
+
+def winning_team
+  max_points = 0
+  winning_team = ""
+  game_hash.each do |team, team_data|
+    total_points = 0
+    team_data[:players].each do |player|
+      total_points += player[:points]
+    end
+    if total_points > max_points
+      max_points = total_points
+      winning_team = team
+    end
+  end
+  winning_team
+end
+
+def player_with_longest_name
+  max_length = 0
+  player_name = ""
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |player|
+      if player[:player_name].length > max_length
+        max_length = player[:player_name].length
+        player_name = player[:player_name]
+      end
+    end
+  end
+  player_name
+end
+
+
